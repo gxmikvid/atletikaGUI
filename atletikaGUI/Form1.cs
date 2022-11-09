@@ -50,7 +50,9 @@ namespace atletikaGUI
         }
 
         private void button2_Click(object sender, EventArgs e) {
-            ReadFromDB(conn, $"SELECT VersenyzoNev, Eredmeny, Nemzet FROM nemzetek JOIN versenyekszamok ON NemzetId WHERE Nemzet = '{OrszagokListBox.Text}' AND Versenyszam = '{ szamokListBox.Text}' AND Helyezes = '{versenyszamNUD.Value}'", StoreResults);
+            if (OrszagokListBox.SelectedIndex > 0 && szamokListBox.SelectedIndex > 0 && versenyszamNUD.Value > 0 && versenyszamNUD.Value < 4) {
+                ReadFromDB(conn, $"SELECT VersenyzoNev, Eredmeny, Nemzet FROM nemzetek JOIN versenyekszamok ON NemzetId WHERE Nemzet = '{OrszagokListBox.Text}' AND Versenyszam = '{szamokListBox.Text}' AND Helyezes = '{versenyszamNUD.Value}'", StoreResults);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
